@@ -2,3 +2,11 @@
 <meta name="viewport" content="width=device-width">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 {{ partialCached "head/css.html" . }}
+{{ with .Site.Params.description }}
+  <meta name="description" content="{{ . }}">
+{{ end }}
+{{ with .Site.Params.favicon }}
+  {{ $favicon := resources.Get (printf "%s%s" "img/" .) }}
+  {{ $favicon = $favicon.Resize "128x" }}
+  <link rel="icon" href="{{ $favicon.Permalink }}">
+{{ end }}
