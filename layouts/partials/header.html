@@ -1,2 +1,17 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+{{ with site.Params.Logo }}
+  <div class="header-row">
+    {{ $img := resources.Get (printf "%s%s" "img/" .) }}
+    <img src="{{ $img.Permalink }}" class="logo" />
+    <div>
+{{ end }}
+
+      <h1>{{ site.Title }}</h1>
+      <p>{{ site.Params.Description }}</p>
+      {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+
+{{ with site.Params.Logo }}
+    </div>
+    {{ $img := resources.Get (printf "%s%s" "img/" .) }}
+    <img src="{{ $img.Permalink }}" class="logo flipped-image" />
+  </div>
+{{ end }}
