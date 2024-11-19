@@ -15,3 +15,7 @@
   {{ $favicon = $favicon.Resize "128x" }}
   <link rel="icon" href="{{ $favicon.Permalink }}">
 {{ end }}
+
+{{ range .Site.Params.meta }}
+  <meta name="{{ .name }}" content="{{ .content }}">
+{{ end }}
